@@ -1,0 +1,12 @@
+.brand {
+  color: #fff;
+}
+body {
+  padding-top: 60px;
+}
+table {
+  margin: 40px 0 0;
+}
+.invisible {
+  opacity: 0;
+}
