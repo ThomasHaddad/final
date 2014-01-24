@@ -8,6 +8,9 @@
 		'text!../../template/itemTemplate.html',
 	],function (Marionette, Mustache,itemTemplate){
 		return Marionette.ItemView.extend({
+			initialize: function (){
+				this.model.on('change', this.render)
+			},
 			tagName:'tr',
 			template : itemTemplate,
 			events : {

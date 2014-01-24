@@ -23,7 +23,7 @@
 					});*/
 					//$('#popup').modal('hide');
 					this.model.set(Backbone.Syphon.serialize(this));
-					appUser.userCollection.add(this.model);
+					appUser.userCollection.add(this.model,{merge:true});
 					this.model.save();
 					appUser.vent.trigger('hidePopup');
 				}
