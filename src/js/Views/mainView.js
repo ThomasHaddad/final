@@ -7,13 +7,16 @@
 		'Views/itemView',
 		'text!../../template/mainTemplate.html',
 		'text!../../template/popupTemplate.html',
-	],function (Marionette,ItemView,mainTemplate,popupTemplate){
+		'app',
+		'syphon'
+	],function (Marionette,ItemView,mainTemplate,popupTemplate,appUser){
 		return Marionette.CompositeView.extend({
 			template : mainTemplate,
 			itemView : ItemView,
 			itemViewContainer : 'tbody',
 			events : {
-				'click button.new-user' : 'addUser' 
+				'click button.new-user' : 'addUser' ,
+				'submit form' : 'searchUser'
 			},
 			addUser : function () {
 				require([
@@ -23,12 +26,24 @@
 				],function (appUser,PopupView,UserModel){
 					var popup = appUser.popupRegion;
 					var userModel = new UserModel();
-					appUser.userCollection.add(userModel);
-					popup.show(new PopupView({
+
+
+					/*popup.show(new PopupView({
+						model : userModel
+					}));*/
+					//popup.$el.modal();
+					appUser.vent.trigger('showPopup', new PopupView({
 						model : userModel
 					}));
-					popup.$el.modal();
-				})
+				});
+			},
+			searchUser: function (event){
+				event.preventDefault();
+				var test = Backbone.Syphon.serialize(this).search;
+				var filteredCollection = this.collection.filter(function(model){
+					return model.get('name').indexOf(test)!=-1;
+				});
+				this.collection.reset(filteredCollection);
 			}
 		});
 	});

@@ -37,6 +37,15 @@
 				}
 			});
 		});
+
+		appUser.vent.on('showPopup',function (popupView){
+			appUser.popupRegion.show(popupView);
+			appUser.popupRegion.$el.modal();
+		});
+		appUser.vent.on('hidePopup',function (){
+			appUser.popupRegion.$el.modal('hide');
+		});
+
 		return appUser;
 	});
 })();

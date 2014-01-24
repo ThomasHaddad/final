@@ -15,6 +15,7 @@
 			localStorage: vendorDir + 'backbone.localStorage',
 			bootstrap: vendorDir + 'bootstrap',
 			text: vendorDir + 'text',
+			syphon: vendorDir + 'backbone.syphon.min'
 		},
 	    shim: {
 	        backbone: {
@@ -23,6 +24,9 @@
 	        },
 	    	bootstrap:{
 	    		deps:['jquery']
+	    	},
+	    	syphon:{
+	    		deps:['backbone']
 	    	},
 	        underscore: {
 	            exports: '_'

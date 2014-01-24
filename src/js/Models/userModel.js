@@ -5,8 +5,8 @@
 	define(['backbone'], function (Backbone) {
 		return Backbone.Model.extend({
 			defaults : {
-				name : 'unknown',
-				age : 0
+				name : '',
+				age : ''
 			}
 		})
 	})
